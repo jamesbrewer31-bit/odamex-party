@@ -1,0 +1,15 @@
+{
+  "name": "Odamex Party",
+  "image": "mcr.microsoft.com/devcontainers/cpp:ubuntu-22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/desktop-lite:1": {}
+  },
+  "forwardPorts": [6080, 10666],
+  "portsAttributes": {
+    "6080": {
+      "label": "Game Screen",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y cmake ninja-build libsdl2-dev libsdl2-mixer-dev libsdl2-net-dev zlib1g-dev libpng-dev unzip && git clone --recurse-submodules https://github.com/odamex/odamex.git ~/odamex && cd ~/odamex && git checkout 12.3.0 && mkdir build && cd build && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release && ninja && cd client && wget https://github.com/freedoom/freedoom/releases/download/v0.13.0/freedoom-0.13.0.zip && unzip -j freedoom-0.13.0.zip '*/freedoom2.wad' && cp freedoom2.wad ../server/"
+}
